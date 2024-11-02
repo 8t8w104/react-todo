@@ -14,7 +14,11 @@ const List = ({ todoData, sendRegister }) => {
           );
         } else {
           // indexが存在しない場合、追加
-          return [...prevTodoList, { ...todoData, index: prevTodoList.length }];
+
+          // ↓動作する
+          return [...prevTodoList, { ...todoData, index: prevTodoList.length + 1 }];
+          // ↓動作しない
+          // return [...prevTodoList, { ...todoData, index: prevTodoList.length }];
         }
       });
 
