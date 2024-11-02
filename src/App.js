@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Register from './components/Register';
+import List from './components/List';
 
-function App() {
+const App = () => {
+  const [todoForList, setTodoForList] = useState({});
+  const [todoForRegist, setTodoForRegist] = useState({});
+  const handleRegister = (event, todo) => {
+    event.preventDefault();
+    setTodoForList(todo);
+
+  }
+
+  const sendRegister = (todo) => {
+    setTodoForRegist(todo);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.Fragment>
+
+      <div>TODOアプリです</div>
+      <div>
+        <Register onSubmit={handleRegister} loadTodo={todoForRegist} />
+      </div>
+      <div style={{ marginTop: '100px' }}>
+        <List todoData={todoForList} sendRegister={sendRegister} />
+      </div>
+    </React.Fragment>
+  )
 }
 
 export default App;
